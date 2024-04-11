@@ -1,0 +1,23 @@
+package com.infodev.cvgenerator.user.ENUM;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+@JsonFormat(shape = JsonFormat.Shape.STRING)
+
+public enum AddressType{
+    PERMANENT("PERMANENT"),
+    TEMPORARY("TEMPORARY");
+
+    private final String key;
+
+    AddressType(String key) {
+        this.key = key;
+    }
+
+    public static List<EnumDto> getAddressTypeList(){
+        return Arrays.stream(AddressType.values()).map(addressType ->new EnumDto(addressType.key)).collect(Collectors.toList());
+    }
+}
