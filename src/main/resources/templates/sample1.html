@@ -24,9 +24,10 @@
         }
 
         .profile_pic {
+
             width: 70%;
             border: 1px solid gray;
-            border-radius: 12000px;
+            border-radius: 50%;
             padding: 1rem;
             height: 12rem;
             /* width: 12rem; */
@@ -125,8 +126,11 @@
 <body class="wrapper">
 <div class="container">
     <div class="container_child_1">
-        <div class="profile_pic_wrapper">
+        <div class="profile_pic_wrapper"  th:if="${basicInformationDto.getFileInformation() != null}">
             <img th:src="${basicInformationDto.getFileInformation().getFilePath()}" class="profile_pic" alt="">
+        </div>
+        <div class="profile_pic_wrapper"  th:unless="${basicInformationDto.getFileInformation() != null}">
+            <img src="free-images.jpg" alt="" height="100px" width="100px">
         </div>
         <div class="background">
             <h2>My Background</h2>
@@ -145,23 +149,27 @@
 
         <!-- education -->
         <div class="profesional_skill">
-            <h2 style="margin: 0; padding: 0;">Education</h2>
-            <ul>
-                <li>Bachelor in Engineering</li>
-                <li style="margin-bottom: 1rem;">Kantipur city college</li>
-                <li>+2 in scienct</li>
+            <h2 style="margin: 0; padding: 0;">Educations</h2>
+            <ul th:each = "eeducation:${educations}">
+                <li>Degree: <span th:text = "${eeducation.getDegreeName()}"></span></li>
+                <li>Institute: <span th:text = "${eeducation.getInstitutionName()}"></span></li>
+                <li>Address: <span th:text = "${eeducation.getInstitutionAddress()}"></span></li>
+
                 <li style="margin-bottom: 1rem;">Vissahsw niketan Higher secondary school</li>
-                <li>SLC</li>
-                <li>ModEl School Tankot</li>
+
             </ul>
         </div>
         <div class="profesional_skill">
             <h2 style="margin: 0; padding: 0;">Reach me At</h2>
-            <ul>
-                <li style="margin-bottom: 1rem;">Balambu | chandragiri 12 -kathmandu</li>
-                <li style=" margin-bottom: 1rem;">+977-9875421588 | viber | whatsapp</li>
-                <li style="margin-bottom: 1rem;">lightsuraj@gmail.com</li>
-            </ul>
+
+               <ul>
+                   <div th:each ="address:${addresses}">
+                   <li style="margin-bottom: 1rem;"><label th:text = "${address.getLocalLevel().getName()}"></label> | <label th:text = "${address.getDistrict().getName()}"></label>  -<label th:text = "${address.getCountry().getName()}"></label> (<label th:text = "${address.getAddressType()}"></label> )</li>
+                   </div>
+
+                   <li style=" margin-bottom: 1rem;">+977-<label th:text="${basicInformationDto.getMobileNumber()}"></label> | viber | whatsapp</li>
+                   <li style="margin-bottom: 1rem;text-transform: lowercase;"><label th:text="${basicInformationDto.getEmail()}"></label> </li>
+               </ul>
         </div>
     </div>
     <div class="container_child_2">
@@ -203,6 +211,14 @@
                         </ul>
                     </div>
                 </div>
+
+            </div>
+
+
+        </div>
+        <div class="currently_running_project">
+            <h2>Other Projects</h2>
+            <div class="currently_running_project_child" th:each="project : ${projects}">
                 <div th:unless="${project.getProjectStatus().name()== 'LIVE'}">
                     <h3><span th:text="${project.getProjectName()}"></span></h3>
                     <div style="margin-bottom: 0;">
@@ -213,11 +229,8 @@
                             <li> ProjectStatus: <span th:text="${project.getProjectStatus()}"></span></li>
                         </ul>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
 
     </div>
