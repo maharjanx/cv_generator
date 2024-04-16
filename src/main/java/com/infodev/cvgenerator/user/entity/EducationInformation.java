@@ -2,10 +2,7 @@ package com.infodev.cvgenerator.user.entity;
 
 import com.infodev.cvgenerator.user.ENUM.DegreeName;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -14,6 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "education_informations")
 public class EducationInformation {
 

@@ -32,7 +32,6 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public CountryDto getCountryById(Short id) {
-//        return countryDtoConverter.toDto(countryRepository.findById(id).orElse(null));
         return countryDtoConverter.toDto(countryRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "country not fount with id: "+id)));
     }
 

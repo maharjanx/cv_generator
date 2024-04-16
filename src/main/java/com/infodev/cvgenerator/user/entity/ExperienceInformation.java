@@ -1,18 +1,18 @@
 package com.infodev.cvgenerator.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "experience_informations")
 public class ExperienceInformation {
     @Id
@@ -30,9 +30,11 @@ public class ExperienceInformation {
     private String companyContact;
 
     @Column(name = "from_date", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fromDate;
 
     @Column(name = "to_date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date toDate;
 
     @Column(name ="to_present")
@@ -41,4 +43,7 @@ public class ExperienceInformation {
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = BasicInformation.class)
     @JoinColumn(name = "basic_information_id",foreignKey = @ForeignKey(name = "fk_experience_information_basic_information"))
     private BasicInformation basicInformation;
+
+    @OneToMany(mappedBy = "experienceInformation", orphanRemoval = true )
+    private Set<ProjectInformation> projectInformations;
 }

@@ -1,9 +1,6 @@
 package com.infodev.cvgenerator.user.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 import jakarta.persistence.*;
@@ -13,6 +10,7 @@ import jakarta.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "fl_localevels")
 public class LocalLevel{
 

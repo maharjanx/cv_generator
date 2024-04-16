@@ -1,9 +1,6 @@
 package com.infodev.cvgenerator.user.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -13,6 +10,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "basic_informations")
 public class BasicInformation {
 
@@ -39,14 +37,15 @@ public class BasicInformation {
     @Column(length = 10, nullable = false, name = "mobile_number")
     private String mobileNumber;
 
-    @Column(length = 100, nullable = false, name = "email")
+    @Column(length = 100, nullable = false, name = "email", unique = true)
     private String email;
 
     @Column(length = 200, nullable = false, name = "linked_in_url")
     private String linkedInUrl;
 
-    @Column(length = 200, nullable = false, name = "profile_image")
-    private String profileImage;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_information_id")
+    private FileInformation fileInformation;
 
 
 }

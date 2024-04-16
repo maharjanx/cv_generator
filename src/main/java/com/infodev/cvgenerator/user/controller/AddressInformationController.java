@@ -1,5 +1,6 @@
 package com.infodev.cvgenerator.user.controller;
 
+import com.infodev.cvgenerator.generic.BaseController;
 import com.infodev.cvgenerator.user.dto.APIResponse;
 import com.infodev.cvgenerator.user.dto.AddressInformationRequestDto;
 import com.infodev.cvgenerator.user.entity.AddressInformation;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/address-information")
-public class AddressInformationController {
+public class AddressInformationController extends BaseController {
     private final AddressInformationService addressInformationService;
 
     public AddressInformationController(AddressInformationService addressInformationService) {
@@ -21,26 +22,43 @@ public class AddressInformationController {
     }
 
     @PostMapping
-    public ResponseEntity<APIResponse> create(@RequestBody @Valid AddressInformationRequestDto addressInformationRequestDto){
-        AddressInformation entity = addressInformationService.saveAddressInformation(addressInformationRequestDto);
-        return ResponseEntity.ok(APIResponse.builder().data(entity).message("Address Information Saved Successfully").success(true).build());
+    public ResponseEntity<APIResponse> create(@RequestBody @Valid AddressInformationRequestDto addressInformationRequestDto) {
+
+
+       return  ResponseEntity.ok(getApiResponse(addressInformationService.saveAddressInformation(addressInformationRequestDto), "Address Information saved successfully", true));
     }
 
     @GetMapping
-    public ResponseEntity<List<AddressInformationRequestDto>> find(){
-        List<AddressInformationRequestDto> addressInformationRequestDto = addressInformationService.getAllAddressInformation();
-        return new ResponseEntity<>(addressInformationRequestDto, HttpStatus.OK);
+    public ResponseEntity<APIResponse> find() {
+
+        List<AddressInformationRequestDto> dtoList = addressInformationService.getAllAddressInformation();
+       return ResponseEntity.ok(getApiResponse(dtoList, "List of Address information fetched successfully", true));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AddressInformationRequestDto> findById(@PathVariable Short id){
+    public ResponseEntity<AddressInformationRequestDto> findById(@PathVariable Short id) {
         AddressInformationRequestDto addressInformationRequestDto = addressInformationService.getAddressInformationById(id);
         return new ResponseEntity<>(addressInformationRequestDto, HttpStatus.OK);
 
     }
 
+    @PutMapping
+    public ResponseEntity<APIResponse>
+    update( @Valid @RequestBody  AddressInformationRequestDto addressInformationRequestDto) {
+        AddressInformationRequestDto dto = addressInformationService.updateAddressInformationById(addressInformationRequestDto);
+        return ResponseEntity.ok(APIResponse.builder().data(dto).message("Address Information Updated!!").success(true).build());
+    }
 
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<APIResponse> delete(@PathVariable Short id){
 
+        return ResponseEntity.ok(getApiResponse(addressInformationService.deleteAddressInformationById(id), "Address Information deleted !!!", true));
+    }
+
+    @GetMapping("/by-basic-info-id/{bashiInfoId}")
+    public ResponseEntity<APIResponse> getByBasicInfoId(@PathVariable("bashiInfoId") Short bashiInfoId){
+        return ResponseEntity.ok(getApiResponse(addressInformationService.getAddInfoByBasicInfoId(bashiInfoId),"fetched Successfully", true));
+    }
 
 }
 

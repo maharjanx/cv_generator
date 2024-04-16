@@ -1,6 +1,8 @@
 package com.infodev.cvgenerator.user.abstracts;
 
+import com.infodev.cvgenerator.user.dto.AddressInformationRequestDto;
 import com.infodev.cvgenerator.user.dto.BasicInformationDto;
+import com.infodev.cvgenerator.user.entity.AddressInformation;
 import com.infodev.cvgenerator.user.entity.BasicInformation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,21 +13,39 @@ import java.util.stream.Collectors;
 
 @Component
 public class BasicInformationEntityDtoConvertor extends AbstractConverter<BasicInformationDto, BasicInformation> {
-    @Autowired
-    private ModelMapper modelMapper;
+
 
     @Override
     public BasicInformation toEntity(BasicInformationDto dto) {
-        BasicInformationDto basicInformationDto = BasicInformationDto
-                .builder()
+
+        return BasicInformation.builder()
                 .email(dto.getEmail())
+                .background(dto.getBackground())
+                .title(dto.getTitle())
+                .firstName(dto.getFirstName())
+                .middleName(dto.getMiddleName())
+                .lastName(dto.getLastName())
+                .linkedInUrl(dto.getLinkedInUrl())
+                .mobileNumber(dto.getMobileNumber())
+                .fileInformation(dto.getFileInformation())
                 .build();
-        return modelMapper.map(dto, BasicInformation.class);
+
     }
+
 
     @Override
     public BasicInformationDto toDto(BasicInformation entity) {
-        return modelMapper.map(entity, BasicInformationDto.class);
+        return BasicInformationDto.builder()
+                .email(entity.getEmail())
+                .background(entity.getBackground())
+                .title(entity.getTitle())
+                .firstName(entity.getFirstName())
+                .middleName(entity.getMiddleName())
+                .lastName(entity.getLastName())
+                .linkedInUrl(entity.getLinkedInUrl())
+                .mobileNumber(entity.getMobileNumber())
+                .fileInformation(entity.getFileInformation())
+                .build();
     }
 
     @Override

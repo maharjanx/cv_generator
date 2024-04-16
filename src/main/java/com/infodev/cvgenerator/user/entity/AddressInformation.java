@@ -2,10 +2,7 @@ package com.infodev.cvgenerator.user.entity;
 
 import com.infodev.cvgenerator.user.ENUM.AddressType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
@@ -13,6 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "address_informations")
 public class AddressInformation {
 

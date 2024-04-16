@@ -7,11 +7,14 @@ import java.util.List;
 
 public interface AddressInformationService {
 
-    AddressInformation saveAddressInformation(AddressInformationRequestDto addressInformationRequestDto);
+    AddressInformationRequestDto saveAddressInformation(AddressInformationRequestDto addressInformationRequestDto);
 
     List<AddressInformationRequestDto> getAllAddressInformation() ;
 
     AddressInformationRequestDto getAddressInformationById(Short id);
 
-    void deleteAddressInformationById(Short id);
+    AddressInformationRequestDto updateAddressInformationById(AddressInformationRequestDto addressInformationRequestDto);
+
+    boolean deleteAddressInformationById(Short id);
+    List<AddressInformationRequestDto> getAddInfoByBasicInfoId(Short basicInfoId);
 }
