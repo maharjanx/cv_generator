@@ -47,6 +47,6 @@ public class CvGenerateServiceImpl implements CvGenerateService{
         context.setVariable("addresses", addressInformationRequestDtos);
         context.setVariable("educations", educationInformationDto);
         context.setVariable("projects", projectInformationDtos);
-        return templateEngine.process("sample1", context);
+        return templateEngine.process("demo", context);
     }
 }

@@ -2,6 +2,7 @@ package com.infodev.cvgenerator.user.abstracts;
 
 import com.infodev.cvgenerator.user.dto.ExperienceInformationDto;
 import com.infodev.cvgenerator.user.dto.IdNameDto;
+import com.infodev.cvgenerator.user.dto.ProjectInformationDto;
 import com.infodev.cvgenerator.user.entity.BasicInformation;
 import com.infodev.cvgenerator.user.entity.ExperienceInformation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class ExperienceInformationEntityDtoConverter extends AbstractConverter<E
     @Autowired
     private ProjectInformationEntityDtoConverter projectInformationEntityDtoConverter;
 
+
     @Override
     public ExperienceInformation toEntity(ExperienceInformationDto dto){
         return ExperienceInformation.builder()
@@ -33,6 +35,10 @@ public class ExperienceInformationEntityDtoConverter extends AbstractConverter<E
     }
     @Override
     public ExperienceInformationDto toDto(ExperienceInformation entity){
+        List<ProjectInformationDto> projectInformationDtos = null;
+        if (entity.getProjectInformations() !=null){
+            projectInformationDtos = projectInformationEntityDtoConverter.toDto(entity.getProjectInformations().stream().toList());
+        }
         return  ExperienceInformationDto.builder()
                 .basicInformationId(getIdName(entity.getBasicInformation()).getId())
                 .companyName(entity.getCompanyName())
@@ -41,7 +47,7 @@ public class ExperienceInformationEntityDtoConverter extends AbstractConverter<E
                 .fromDate(entity.getFromDate())
                 .toDate(entity.getToDate())
                 .toPresent(entity.isToPresent())
-                .projectInformations(projectInformationEntityDtoConverter.toDto(entity.getProjectInformations().stream().toList()))
+                .projectInformations(projectInformationDtos)
                 .build();
     }
 

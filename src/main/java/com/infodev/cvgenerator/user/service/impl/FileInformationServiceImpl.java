@@ -17,7 +17,7 @@ import java.util.Optional;
 public class FileInformationServiceImpl implements FileInformationService {
     private final FileInformationRepository fileInformationRepository;
     private BasicInformationService basicInformationService;
-    private final String FOLDER_PATH = "/home/anish/Documents/office/java/CROSS-BORDER/cv-generator/Files/";
+    private final String FOLDER_PATH = "/home/anish/Documents/office/java/CROSS-BORDER/cv-generator/src/main/resources/static/images/";
 
     public FileInformationServiceImpl(FileInformationRepository fileInformationRepository) {
         this.fileInformationRepository = fileInformationRepository;
@@ -31,7 +31,7 @@ public class FileInformationServiceImpl implements FileInformationService {
         String fileName = multipartFile.getOriginalFilename();
         File file = new File(filePath);
         multipartFile.transferTo(file);
-        return FileInformation.builder()
+    return FileInformation.builder()
                 .filePath(filePath)
                 .name(fileName)
                 .type(multipartFile.getContentType())

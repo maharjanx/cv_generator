@@ -21,7 +21,8 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-      location: /home/anish/Documents/office/java/CROSS-BORDER/cv-generator/Files
+      location: /home/anish/Documents/office/java/CROSS-BORDER/cv-generator/src/main/resources/static/img/
+
 #  flyway:
 #    enabled: true
 #    locations: classpath:db/migration/postgresql

@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CV Template</title>
     <link type="text/css" href="../static/css/demo.css"></link>
     <style>
+        body {
+            font-family: 'Roboto', sans-serif; /* Change font family */
+
+        }
         .container {
+            background: lightslategray;
             display: flex;
-            /* flex-wrap: wrap; */
             width: 100%;
         }
 
         .wrapper {
             height: 100vh;
-            margin-left: 20rem;
-            margin-right: 20rem;
+            margin-left: 30rem;
+            margin-right: 30rem;
         }
 
         .profile_pic_wrapper {
@@ -24,13 +28,11 @@
         }
 
         .profile_pic {
-
             width: 70%;
             border: 1px solid gray;
             border-radius: 50%;
             padding: 1rem;
             height: 12rem;
-            /* width: 12rem; */
         }
 
         .name {
@@ -39,12 +41,13 @@
 
         .container_child_1 {
             background-color: gray;
-            width: 30%;
+            width: 40%; /* Adjust as needed */
             padding: 0.5rem;
         }
 
         .container_child_2 {
-            width: 70%;
+            flex: fit-content;
+            width: 60%; /* Adjust as needed */
         }
 
         .degination {
@@ -60,7 +63,7 @@
 
         .work_background_wrapper {
             text-align: left;
-            padding-left: 5rem;
+            padding-left: 1rem;
         }
 
         .work_background_wrapper h3 {
@@ -72,7 +75,7 @@
 
         .currently_running_project {
             text-align: left;
-            padding-left: 5rem;
+            padding-left: 1rem;
         }
 
         .currently_running_project h2 {
@@ -85,8 +88,7 @@
         .currently_running_project_child h3 {
             color: rgb(228, 130, 130);
             margin-bottom: 0.2rem;
-            padding: 0
-
+            padding: 0;
         }
 
         .background h2 {
@@ -107,7 +109,6 @@
         .profesional_skill h2 {
             color: rgb(224, 135, 135);
             text-transform: uppercase;
-
         }
 
         .profesional_skill ul {
@@ -121,21 +122,36 @@
             color: #ffffff;
             font-size: 14px;
         }
+
+        /* Media Queries for smaller screens */
+        @media (max-width: 768px) {
+            .container_child_1 {
+                width: 100%; /* Full width on smaller screens */
+            }
+            .container_child_2 {
+                width: 100%; /* Full width on smaller screens */
+            }
+            .profile_pic_wrapper {
+                justify-content: flex-start; /* Center profile pic on larger screens */
+            }
+        }
     </style>
+
 </head>
 <body class="wrapper">
 <div class="container">
     <div class="container_child_1">
         <div class="profile_pic_wrapper"  th:if="${basicInformationDto.getFileInformation() != null}">
-            <img th:src="${basicInformationDto.getFileInformation().getFilePath()}" class="profile_pic" alt="">
+
+            <img th:src="${'/images/'+basicInformationDto.getFileInformation().getName()}" class="profile_pic" alt=""/>
         </div>
         <div class="profile_pic_wrapper"  th:unless="${basicInformationDto.getFileInformation() != null}">
-            <img src="free-images.jpg" alt="" height="100px" width="100px">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPRXj0PUKztSHpPM5VLxbk3Lb8ISUrEIiMPKcFJ8vA9hGU5C7c7D9UCTmfCmk3PPpXHCE&usqp=CAU" alt="" height="100px" width="100px"/>
         </div>
         <div class="background">
             <h2>My Background</h2>
             <p>
-                <span th:text="${basicInformationDto.getBackground()}"></span>
+                <span th:text="${basicInformationDto.getBackground()}"/>
             </p>
         </div>
         <div class="profesional_skill">
@@ -151,9 +167,9 @@
         <div class="profesional_skill">
             <h2 style="margin: 0; padding: 0;">Educations</h2>
             <ul th:each = "eeducation:${educations}">
-                <li>Degree: <span th:text = "${eeducation.getDegreeName()}"></span></li>
-                <li>Institute: <span th:text = "${eeducation.getInstitutionName()}"></span></li>
-                <li>Address: <span th:text = "${eeducation.getInstitutionAddress()}"></span></li>
+                <li>Degree: <span th:text = "${eeducation.getDegreeName()}"/></li>
+                <li>Institute: <span th:text = "${eeducation.getInstitutionName()}"/></li>
+                <li>Address: <span th:text = "${eeducation.getInstitutionAddress()}"/></li>
 
                 <li style="margin-bottom: 1rem;">Vissahsw niketan Higher secondary school</li>
 
@@ -162,22 +178,22 @@
         <div class="profesional_skill">
             <h2 style="margin: 0; padding: 0;">Reach me At</h2>
 
-               <ul>
-                   <div th:each ="address:${addresses}">
-                   <li style="margin-bottom: 1rem;"><label th:text = "${address.getLocalLevel().getName()}"></label> | <label th:text = "${address.getDistrict().getName()}"></label>  -<label th:text = "${address.getCountry().getName()}"></label> (<label th:text = "${address.getAddressType()}"></label> )</li>
-                   </div>
+            <ul>
+                <div th:each ="address:${addresses}">
+                    <li style="margin-bottom: 1rem;"><label th:text = "${address.getLocalLevel().getName()}"></label> | <label th:text = "${address.getDistrict().getName()}"></label>  -<label th:text = "${address.getCountry().getName()}"></label> (<label th:text = "${address.getAddressType()}"></label> )</li>
+                </div>
 
-                   <li style=" margin-bottom: 1rem;">+977-<label th:text="${basicInformationDto.getMobileNumber()}"></label> | viber | whatsapp</li>
-                   <li style="margin-bottom: 1rem;text-transform: lowercase;"><label th:text="${basicInformationDto.getEmail()}"></label> </li>
-               </ul>
+                <li style=" margin-bottom: 1rem;">+977-<label th:text="${basicInformationDto.getMobileNumber()}"></label> | viber | whatsapp</li>
+                <li style="margin-bottom: 1rem;text-transform: lowercase;"><label th:text="${basicInformationDto.getEmail()}"></label> </li>
+            </ul>
         </div>
     </div>
     <div class="container_child_2">
         <h1 class="name"><span
-                th:text="${ basicInformationDto.getFirstName() + ' '+basicInformationDto.getMiddleName() +' '+ basicInformationDto.getLastName() }"></span>
+                th:text="${ basicInformationDto.getFirstName() + ' '+basicInformationDto.getMiddleName() +' '+ basicInformationDto.getLastName() }"/>
         </h1>
         <div class="degination">
-            <p><span th:text="${basicInformationDto.getTitle()}"></span></p>
+            <p><span th:text="${basicInformationDto.getTitle()}"/></p>
         </div>
         <div class="work_background_wrapper">
             <h3>Work Background</h3>
@@ -185,10 +201,10 @@
             <div style="margin-bottom: 0.5rem;" th:each="experience : ${experiences}">
                 <h4 style="margin: 0; padding: 0;">
                     <!--                    Senior Software Developer  | Team Lead (May 26th 2019 to presetn)-->
-                    <span th:text=" '('+${experience.getFromDate() +' to' + (experience.isToPresent() ? ' Present' : experience.getToDate())} +')' "</span>
+                    <span th:text=" '('+${experience.getFromDate() +' to' + (experience.isToPresent() ? ' Present' : experience.getToDate())} +')' "/>
                 </h4>
                 <ul style="padding:0;padding-left:1rem; margin: 0;list-style-type: disc; font-style: italic;">
-                    <li><span th:text="${experience.getCompanyName()}"></span>
+                    <li><span th:text="${experience.getCompanyName()}"/>
                     </li>
                 </ul>
             </div>
@@ -202,12 +218,12 @@
             <!-- repeate through loop -->
             <div class="currently_running_project_child" th:each="project : ${projects}">
                 <div th:if="${project.getProjectStatus().name() == 'LIVE'}">
-                    <h3><span th:text="${project.getProjectName()}"></span></h3>
+                    <h3><span th:text="${project.getProjectName()}"/></h3>
                     <div style="margin-bottom: 0;">
                         <ul style="padding:0;padding-left:1rem; margin: 0;list-style-type: disc; font-weight: bold;">
-                            <li> Role: <span th:text="${project.getProjectRole()}"></span></li>
-                            <li> Description: <span th:text="${project.getProjectDescription()}"></span></li>
-                            <li> link: <span th:text="${project.getProjectUrl()}"></span></li>
+                            <li> Role: <span th:text="${project.getProjectRole()}"/></li>
+                            <li> Description: <span th:text="${project.getProjectDescription()}"/></li>
+                            <li> link: <span th:text="${project.getProjectUrl()}"/></li>
                         </ul>
                     </div>
                 </div>
@@ -220,13 +236,13 @@
             <h2>Other Projects</h2>
             <div class="currently_running_project_child" th:each="project : ${projects}">
                 <div th:unless="${project.getProjectStatus().name()== 'LIVE'}">
-                    <h3><span th:text="${project.getProjectName()}"></span></h3>
+                    <h3><span th:text="${project.getProjectName()}"/></h3>
                     <div style="margin-bottom: 0;">
                         <ul style="padding:0;padding-left:1rem; margin: 0;list-style-type: disc; font-weight: bold;">
-                            <li> Role: <span th:text="${project.getProjectRole()}"></span></li>
-                            <li> Description: <span th:text="${project.getProjectDescription()}"></span></li>
-                            <li> link: <span th:text="${project.getProjectUrl()}"></span></li>
-                            <li> ProjectStatus: <span th:text="${project.getProjectStatus()}"></span></li>
+                            <li> Role: <span th:text="${project.getProjectRole()}"/></li>
+                            <li> Description: <span th:text="${project.getProjectDescription()}"/></li>
+                            <li> link: <span th:text="${project.getProjectUrl()}"/></li>
+                            <li> ProjectStatus: <span th:text="${project.getProjectStatus()}"/></li>
                         </ul>
                     </div>
                 </div>
