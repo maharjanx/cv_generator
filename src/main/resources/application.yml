@@ -7,8 +7,8 @@ spring:
     name: cy_generator
   datasource:
     url: jdbc:postgresql://localhost:5432/cv_generator
-    username: anish
-    password: postgres
+    username: jit
+    password: jitjit
   ##    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

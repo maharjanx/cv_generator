@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Template</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex justify-center content-center">
+<!-- outer container -->
+<div class="border border-gray-300 rounded-sm shadow-lg py-10 px-10 w-4/5 mt-10 mb-10">
+    <!-- header (profile) -->
+    <header>
+        <!-- social icons-->
+        <div class="flex justify-between items-center">
+            <div>
+                <div class="bg-cover bg-no-repeat rounded-full h-52 w-52"
+                     th:style="${'background-image: url(/images/'+basicInformationDto.getFileInformation().getName()+')'}"
+                >
+                </div>
+            </div>
+            <div class="grid justify-items-end">
+                <h1 class="text-7xl font-extrabold"><span
+                        th:text="${ basicInformationDto.getFirstName() + ' '+basicInformationDto.getMiddleName() +' '+ basicInformationDto.getLastName() }"/>
+                <p class="text-xl mt-5">Full Stack Developer</p>
+            </div>
+        </div>
+    </header>
+    <!-- detailed info -->
+    <main class="flex gap-x-10 mt-10">
+        <div class="w-2/6">
+            <!-- contact details -->
+            <strong class="text-xl font-medium">Contact Details</strong>
+            <ul class="mt-2 mb-10">
+                <li class="px-2 mt-1"><strong class="mr-1">Phone </strong>
+                    <a href="tel:+821023456789" class="block">+82 10 2345 6789</a>
+                </li>
+                <li class="px-2 mt-1"><strong class="mr-1">E-mail </strong>
+                    <a href="mailto:" class="block">aspiringfe@helloworld.com</a>
+                </li>
+                <li class="px-2 mt-1"><strong class="mr-1">Location</strong><span class="block">Seoul,
+                            South Korea</span></li>
+            </ul>
+
+            <!-- github stats -->
+            <strong class="text-xl font-medium ">Github Stats</strong>
+            <ul class="flex w-full mt-2 mb-10">
+                <li class="px-2 mt-2 w-4/12 bg-pink-600 text-white text-center rounded-tl-lg rounded-bl-lg">HTML
+                </li>
+                <li class="px-2 mt-2 w-4/12 bg-blue-600 text-white text-center">CSS</li>
+                <li class="px-2 mt-2 w-5/12 bg-yellow-500 text-white text-center rounded-tr-lg rounded-br-lg">JS
+                </li>
+
+            </ul>
+            <!-- skills -->
+            <strong class="text-xl font-medium">Professional Skills</strong>
+            <ul class="mt-2 mb-10">
+                <li class="px-2 mt-1">HTML</li>
+                <li class="px-2 mt-1">CSS</li>
+                <li class="px-2 mt-1">JavaScript</li>
+                <li class="px-2 mt-1">React</li>
+                <li class="px-2 mt-1">Node.js</li>
+            </ul>
+            <strong class="text-xl font-medium">Further Education</strong>
+            <ul class="mt-2 mb-10">
+                <li class="px-2 mt-1">Like Lion Frontend School</li>
+                <li class="px-2 mt-1">Udemy</li>
+                <li class="px-2 mt-1">Freecodecamp</li>
+            </ul>
+            </ul>
+            <!-- what I'm learning these days -->
+            <strong class="text-xl font-medium">Currently learning</strong>
+            <ul class="mt-2 mb-10">
+                <li class="px-2 mt-1">About Web Accessibility</li>
+                <li class="px-2 mt-1">and User Experience</li>
+            </ul>
+            <strong class="text-xl font-medium">Interests & Hobbies</strong>
+            <ul class="mt-2">
+                <li class="px-2 mt-1">Sustainability</li>
+                <li class="px-2 mt-1">New technologies</li>
+                <li class="px-2 mt-1">Blogging on dev.to</li>
+                <li class="px-2 mt-1">Investment</li>
+                <li class="px-2 mt-1">Travel</li>
+            </ul>
+        </div>
+        <!-- info -->
+        <div class="w-4/6">
+            <section>
+                <!-- about me -->
+                <h2 class="text-2xl pb-1 border-b font-semibold">My Background</h2>
+                <p class="mt-4 text-xs" th:text="${basicInformationDto.getBackground()}"/>
+
+            </section>
+            <section>
+                <!-- projects -->
+                <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Current Running Project</h2>
+                <ul class="mt-1">
+                    <li class="py-2">
+                        <div class="flex justify-between my-1">
+                            <strong>Senior Software Developer | Team Lead (May 26th 2019 to presetn) </strong>
+                        </div>
+                        <ul class="list-disc text-sm ml-5">
+                            <li>info developers</li>
+                        </ul>
+                    </li>
+                    <li class="py-2">
+                        <div class="flex justify-between my-1">
+                            <strong>Senior Software Developer | Team Lead (May 26th 2019 to presetn) </strong>
+                        </div>
+                        <ul class="list-disc text-sm ml-5">
+                            <li>info developers</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <!-- work experiences -->
+                <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Work Background</h2>
+                <ul class="mt-2">
+                    <li class="py-2">
+                        <div class="flex justify-between my-1">
+                            <strong>Senior Software Developer | Team Lead (May 26th 2019 to presetn) </strong>
+                        </div>
+                        <ul class="list-disc text-sm ml-5">
+                            <li>info developers</li>
+                            <li>info developers</li>
+                            <li>info developers</li>
+                            <li>info developers</li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </section>
+            <section>
+                <!-- education -->
+                <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">Education</h2>
+                <ul class="mt-2">
+                    <li class="pt-2">
+                        <p class="flex justify-between text-sm"><strong class="text-base">Hello
+                            Univerisity</strong>2022-2019</p>
+                        <p class="flex justify-between text-sm">Digital marketing<small>GPA 4.0</small></p>
+                    </li>
+                    <li class="pt-2">
+                        <p class="flex justify-between text-sm"><strong class="text-base">World
+                            Univerisity</strong>2022-2019</p>
+                        <p class="flex justify-between text-sm">Fashion Design<small>GPA 3.8</small></p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </main>
+    <!-- short lines to introduce myself -->
+    <footer class="mt-6">
+
+        <p class="bg-gray-600 text-white text-center text-sm py-2">
+            &copy; 2024 Anish Maharjan. All rights reserved.
+        </p>
+    </footer>
+</div>
+</body>
+
+</html>
