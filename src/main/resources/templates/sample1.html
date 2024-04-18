@@ -6,9 +6,25 @@
     <title>CV Template</title>
     <link type="text/css" href="../static/css/demo.css"></link>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif; /* Change font family */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100%;
+            background: #eee;
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            color: #222;
+            font-size: 14px;
+            line-height: 26px;
+            padding-bottom: 50px;
         }
         .container {
             background: lightslategray;
@@ -167,11 +183,11 @@
         <div class="profesional_skill">
             <h2 style="margin: 0; padding: 0;">Educations</h2>
             <ul th:each = "eeducation:${educations}">
-                <li>Degree: <span th:text = "${eeducation.getDegreeName()}"/></li>
-                <li>Institute: <span th:text = "${eeducation.getInstitutionName()}"/></li>
-                <li>Address: <span th:text = "${eeducation.getInstitutionAddress()}"/></li>
+                <li><b>Degree:</b> <span th:text = "${eeducation.getDegreeName()}"/></li>
+                <li><b>Institute:</b> <span th:text = "${eeducation.getInstitutionName()}"/></li>
+                <li><b>Address: </b><span th:text = "${eeducation.getInstitutionAddress()}"/></li>
 
-                <li style="margin-bottom: 1rem;">Vissahsw niketan Higher secondary school</li>
+                <li style="margin-bottom: 1rem;"/>
 
             </ul>
         </div>

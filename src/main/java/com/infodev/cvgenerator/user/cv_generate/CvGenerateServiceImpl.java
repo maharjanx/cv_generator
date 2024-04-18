@@ -9,6 +9,7 @@ import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CvGenerateServiceImpl implements CvGenerateService{
@@ -31,7 +32,7 @@ public class CvGenerateServiceImpl implements CvGenerateService{
     }
 
     @Override
-    public String getAllInformation(Short id) {
+    public String getAllInformation(Short id, String template) {
 
         BasicInformationDto basicInformationDto = basicInformationService.getBasicInformationById(id);
         List<EducationInformationDto> educationInformationDto = educationInformationService.getEduInfosByBasicInfoId(id);
@@ -47,6 +48,12 @@ public class CvGenerateServiceImpl implements CvGenerateService{
         context.setVariable("addresses", addressInformationRequestDtos);
         context.setVariable("educations", educationInformationDto);
         context.setVariable("projects", projectInformationDtos);
-        return templateEngine.process("demo", context);
+
+        if (Objects.equals(template, "sample1")) {
+            return templateEngine.process("sample1", context);
+        }else if (Objects.equals(template,"sample2")){
+            return templateEngine.process("sample2", context);
+        }else return "template not found";
+
     }
 }

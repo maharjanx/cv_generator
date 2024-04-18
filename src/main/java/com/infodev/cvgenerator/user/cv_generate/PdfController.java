@@ -25,9 +25,9 @@ public class PdfController {
         this.cvGenerateService = cvGenerateService;
     }
 
-    @GetMapping("/generate/{id}")
-    public ResponseEntity<ByteArrayResource> generatePdf(@PathVariable Short id) throws IOException {
-        String html = cvGenerateService.getAllInformation(id);
+    @GetMapping("/generate/{id}/{template}")
+    public ResponseEntity<ByteArrayResource> generatePdf(@PathVariable Short id, @PathVariable("template") String template) throws IOException {
+        String html = cvGenerateService.getAllInformation(id,template);
 
         logger.debug("Html content received from CvGenerateService:{}",html);
         //Generating Pdf from html
